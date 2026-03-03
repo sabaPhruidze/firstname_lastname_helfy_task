@@ -96,4 +96,18 @@ router.delete("/:id", (req, res) => {
   return res.status(200).json({ message: "succesfully removed task" });
 });
 // DELETE [END]
+// PATCH [START]
+router.patch("/:id/toggle", (req, res) => {
+  const id = parseInt(req.params.id);
+  if (!Number.isFinite(id)) {
+    return res.status(400).json({ message: "incorrect task id" });
+  }
+  const task = tasks.find((eachTask) => eachTask.id === id);
+  if (!task) {
+    return res.status(404).json({ message: "incorrect id" });
+  }
+  task.completed = !task.completed;
+  return res.status(200).json(task);
+});
+// PATCH [END]
 module.exports = router;
