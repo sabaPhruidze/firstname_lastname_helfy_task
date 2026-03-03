@@ -55,5 +55,7 @@
 5. Filter now functions by adding filteredTasks instead of using method map on tasks I am using now on filteredTasks function in order to correctly display information
 6. Taskform inputs added ,are controlled and now adds tasks , currently we do not need to check backend on post and get anymore
 7. added basic styles using css for taskforms
+8. each item have now toggle and delete button both does it job. on delete added window.confirm so it is much faster
+9.
 
 ## API Endpoints

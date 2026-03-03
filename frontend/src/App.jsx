@@ -1,15 +1,23 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import { getTasks, postTask, deleteTask, patchTask } from "./services/api";
+import {
+  getTasks,
+  postTask,
+  deleteTask,
+  patchTask,
+  putTask,
+} from "./services/api";
 import TaskFilter from "./components/TaskFilter";
 import TaskForm from "./components/TaskForm";
 import TaskItem from "./components/TaskItem";
 function App() {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState();
+  const [error, setError] = useState("");
   const [filter, setFilter] = useState("all");
   const [saving, setSaving] = useState(false);
+  const [editTask, setEditTask] = useState(null);
+  const [updating, setUpdating] = useState(false);
   useEffect(() => {
     const fetchTasks = async () => {
       try {
@@ -61,13 +69,42 @@ function App() {
       setError(e.message || "Error can not delete task");
     }
   };
+  const startEdit = (task) => setEditTask(task);
+  const cancelEdit = () => setEditTask(null);
+  const updateTask = async (payload) => {
+    if (!editTask) return;
+    setEditTask(null);
+    try {
+      setUpdating(true);
+      setError("");
+      const updated = await putTask(editTask.id, payload);
+      setTasks((prev) =>
+        prev.map((task) => (task.id === updated.id ? updated : task)),
+      );
+    } catch (e) {
+      setError(e.message || "Error can noty delete task");
+    } finally {
+      setUpdating(false);
+    }
+  };
   if (loading) return <div>tasks will be presented soon...</div>;
   if (error) return <div>{error}</div>;
   return (
     <div>
       <h1>Task manager</h1>
       <TaskFilter value={filter} onChange={setFilter} />
-      <TaskForm onSubmit={createTasks} loading={saving} />
+      {editTask ? (
+        <TaskForm
+          key={editTask.id}
+          mode="edit"
+          values={editTask}
+          onSubmit={updateTask}
+          cancel={cancelEdit}
+          loading={updating}
+        />
+      ) : (
+        <TaskForm onSubmit={createTasks} loading={saving} key="create" />
+      )}
       <p>filter: {filter}</p>
       {filteredTasks.length === 0 ? (
         <p>No tasks added yet</p>
@@ -79,6 +116,7 @@ function App() {
               task={task}
               onToggle={toggleTasks}
               onDelete={handleDelete}
+              onEdit={startEdit}
             />
           ))}
         </ul>

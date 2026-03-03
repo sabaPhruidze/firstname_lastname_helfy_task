@@ -1,16 +1,23 @@
 import { useState } from "react";
 import "../styles/taskForm.css";
 const possiblePriorities = ["low", "medium", "high"];
-const TaskForm = ({ onSubmit, loading }) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [priority, setPriority] = useState("low");
+const TaskForm = ({ onSubmit, loading, mode = "create", values, cancel }) => {
+  const initialTitle = mode === "edit" && values ? values.title || "" : "";
+  const initialDescription =
+    mode === "edit" && values ? values.description || "" : "";
+  const initialPriority =
+    mode === "edit" && values ? values.priority || "low" : "low";
+
+  const [title, setTitle] = useState(initialTitle);
+  const [description, setDescription] = useState(initialDescription);
+  const [priority, setPriority] = useState(initialPriority);
   const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const removeSpacesInTitle = title.trim();
     const removeSpacesInDescription = description.trim();
+
     if (!removeSpacesInTitle) return setError("title must be written");
     if (!removeSpacesInDescription)
       return setError("description must be written");
@@ -20,13 +27,15 @@ const TaskForm = ({ onSubmit, loading }) => {
       description: removeSpacesInDescription,
       priority,
     });
-    setTitle("");
-    setDescription("");
-    setPriority("low");
+    if (mode === "create") {
+      setTitle("");
+      setDescription("");
+      setPriority("low");
+    }
   };
   return (
     <form onSubmit={handleSubmit} className="task-form">
-      <h3>Add Task</h3>
+      <h2>{mode === "edit" ? "Edit Task" : "Add Task"}</h2>
       {error ? <p>{error}</p> : ""}
       <input
         type="text"
@@ -53,8 +62,15 @@ const TaskForm = ({ onSubmit, loading }) => {
         ))}
       </select>
       <button type="submit" disabled={loading}>
-        {loading ? "Please wait..." : "Add Task"}
+        {loading ? "Please wait..." : mode === "edit" ? "Save" : "Add Task"}
       </button>
+      {mode === "edit" ? (
+        <button type="button" onClick={cancel} disabled={loading}>
+          Cancel
+        </button>
+      ) : (
+        ""
+      )}
     </form>
   );
 };

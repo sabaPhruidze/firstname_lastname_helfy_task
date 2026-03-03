@@ -1,6 +1,6 @@
 import React from "react";
 
-const TaskItem = ({ task, onToggle, onDelete }) => {
+const TaskItem = ({ task, onToggle, onDelete, onEdit }) => {
   const handleDelete = () => {
     const ok = window.confirm("Delete this task");
     if (ok) onDelete(task.id);
@@ -17,6 +17,9 @@ const TaskItem = ({ task, onToggle, onDelete }) => {
         <button type="button" onClick={() => onToggle(task.id)}>
           Toggle
         </button>{" "}
+        <button type="button" onClick={onEdit(task)}>
+          Edit
+        </button>
         <button type="button" onClick={handleDelete}>
           Delete
         </button>
