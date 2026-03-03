@@ -4,7 +4,7 @@ export const getTasks = async () => {
   const response = await fetch(BASE_URL);
   const data = await response.json();
   if (!response.ok) {
-    throw new Error(data.message || "Error , can not fetcch tasks");
+    throw new Error(data.message || "Error , can not fetch tasks");
   }
   return data;
 };
