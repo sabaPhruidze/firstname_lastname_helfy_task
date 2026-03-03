@@ -1,8 +1,9 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import { getTasks, postTask } from "./services/api";
+import { getTasks, postTask, deleteTask, patchTask } from "./services/api";
 import TaskFilter from "./components/TaskFilter";
 import TaskForm from "./components/TaskForm";
+import TaskItem from "./components/TaskItem";
 function App() {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -29,6 +30,7 @@ function App() {
     if (Object.is(filter, "pending")) return !task.completed;
     return true; // for returning all
   });
+
   const createTasks = async (payload) => {
     try {
       setSaving(true);
@@ -39,6 +41,24 @@ function App() {
       setError(e.message || "error can not create task");
     } finally {
       setSaving(false);
+    }
+  };
+  const toggleTasks = async (id) => {
+    try {
+      setError("");
+      const updated = await patchTask(id);
+      setTasks((prev) => prev.map((task) => (task.id === id ? updated : task)));
+    } catch (e) {
+      setError(e.message || "Error can not toggle tasks");
+    }
+  };
+  const handleDelete = async (id) => {
+    try {
+      setError("");
+      await deleteTask(id);
+      setTasks((prev) => prev.filter((task) => task.id !== id));
+    } catch (e) {
+      setError(e.message || "Error can not delete task");
     }
   };
   if (loading) return <div>tasks will be presented soon...</div>;
@@ -54,10 +74,12 @@ function App() {
       ) : (
         <ul>
           {filteredTasks.map((task) => (
-            <li key={task.id}>
-              {task.title} , {task.priority} ,{" "}
-              {task.completed ? "Done" : "Pending..."}
-            </li>
+            <TaskItem
+              key={task.id}
+              task={task}
+              onToggle={toggleTasks}
+              onDelete={handleDelete}
+            />
           ))}
         </ul>
       )}
