@@ -8,7 +8,8 @@
 4. created server.js which runs on port 4000 . Test can be check after cd /backend , npm run dev and move on here
    http://localhost:4000/check (it must write server runs)
 5. wrote _req because when it is not used it is common to write "_" symbol
-6.
+6. added cors and expres.json middleware
+7.
 
 ## Frontend Setup
 
