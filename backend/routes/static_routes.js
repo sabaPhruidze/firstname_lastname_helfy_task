@@ -1,4 +1,3 @@
-//@ts-check
 const express = require("express");
 const router = express.Router();
 const { tasks, possiblePriorities, getNewId } = require("./tasks_store");
@@ -25,17 +24,19 @@ router.post("/", (req, res) => {
       .status(400)
       .json({ message: "description is emtpy. please write the description" });
   }
-  const checkPriority = possiblePriorities.includes(priority)
-    ? priority
-    : "low";
-
+  if (priority !== undefined && !possiblePriorities.includes(priority)) {
+    return res.status(400).json({
+      message: "Incorrect priority. use low,medium or high only",
+    });
+  }
+  const correctPriority = priority ?? "low";
   const newTask = {
     id: getNewId(),
     title: checkTitle,
     description: checkDescriptionm,
     completed: false,
     createdAt: new Date().toISOString(),
-    priority: checkPriority,
+    priority: correctPriority,
   };
   tasks.unshift(newTask);
   return res.status(201).json(newTask);

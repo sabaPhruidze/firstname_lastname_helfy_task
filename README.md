@@ -38,7 +38,11 @@
 17. Made refactoring so Istead of tasks.js where every method was written there I split into 3 parts (dynamic_routes, static_routes and tasks_store) and checked again each method works tested by above ways
 18. added two middleware not_found and error_handler .
     not_found return 404 on uknown routes as for error_handler returns errors with status cvodes
+    for exmaple: http://localhost:4000/incorrect_url must return { "message": "route not found" }
+    if for example we create new route /something and add throw new Error and runned /something this route than it would give us error message or servers error
 
 ## Frontend Setup
+
+1. installed react.js using vite@latest
 
 ## API Endpoints
