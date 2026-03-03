@@ -1,4 +1,3 @@
-//@ts-check
 const express = require("express");
 const router = express.Router();
 
@@ -52,7 +51,7 @@ router.put("/:id", (req, res) => {
   }
   const task = tasks.find((eachTask) => eachTask.id === id);
   if (!task) {
-    return res.status(404).json({ mesge: "incorrect id" });
+    return res.status(404).json({ message: "incorrect id" });
   }
   // repeated this part from post [START]
   const { title, description, priority, completed } = req.body;
@@ -72,16 +71,29 @@ router.put("/:id", (req, res) => {
       .json({ message: "description is emtpy. please write the description" });
   }
   task.description = checkDescription;
-  const checkPriority = possiblePriorities.includes(priority)
-    ? priority
-    : "low";
-  task.priority = checkPriority;
+  if (!possiblePriorities.includes(priority)) {
+    return res.status(400).json({ message: "written incorrect priority" });
+  }
+  task.priority = priority;
   // repeated this part from post [END]
   if (typeof completed === "boolean") {
-    task.completed === completed;
+    task.completed = completed;
   }
   return res.status(200).json(task);
 });
 // PUT [END]
-
+// DELETE [START]
+router.delete("/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  if (!Number.isFinite(id)) {
+    return res.status(400).json({ message: "incorrect task id" });
+  }
+  const index = tasks.findIndex((each) => each.id === id); //if no = than -1;
+  if (index === -1) {
+    return res.status(404).json({ message: "No task with this id" });
+  }
+  tasks.splice(index, 1);
+  return res.status(200).json({ message: "succesfully removed task" });
+});
+// DELETE [END]
 module.exports = router;

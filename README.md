@@ -30,7 +30,9 @@
     "completed": true
     }
     on put method.
-14. e
+14. REMOVE Method added as well and works correctly
+    for example write this and DELET method in thunder client ,after post method : http://localhost:4000/api/tasks/1
+15.
 
 ## Frontend Setup
 
