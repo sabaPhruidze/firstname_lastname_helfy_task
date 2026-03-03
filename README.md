@@ -56,6 +56,11 @@
 6. Taskform inputs added ,are controlled and now adds tasks , currently we do not need to check backend on post and get anymore
 7. added basic styles using css for taskforms
 8. each item have now toggle and delete button both does it job. on delete added window.confirm so it is much faster
-9.
+9. edit task
+   each task has an edit button and when user clicks it it will be displayes instead of add task. taskform receives props of mode="edit" and values relevant
+   which fill the inputs with the correct values
+   after submitiing on edit mode put request will be sent to relevant route and will update the task instate . cancel buttyon just just clears the inputs and get it backs to add part
+   fixed also bugs
+10.
 
 ## API Endpoints
