@@ -50,6 +50,6 @@
    method PUT update tasks
    method DELETE deletes task
    method PATCH toggles completed property/key
-3.
+3. retieved data and display . also tried toggle using patch and it displays done correctly as for other cases displays 'pending..' as I wrote
 
 ## API Endpoints
