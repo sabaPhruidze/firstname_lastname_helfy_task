@@ -32,7 +32,10 @@
     on put method.
 14. REMOVE Method added as well and works correctly
     for example write this and DELET method in thunder client ,after post method : http://localhost:4000/api/tasks/1
-15.
+15. added PATCH Method and it toggles the completed property/key => if true than it because false and if false it becomes true
+16. in order to check patch first add using post method mentioned above than write in thunder clinet http://localhost:4000/api/tasks/3/toggle (instead of 3 write correct number) and then write patch method and send
+    it will change completed value
+17. Made refactoring so Istead of tasks.js where every method was written there I split into 3 parts and checked again each method works tested by above ways
 
 ## Frontend Setup
 
