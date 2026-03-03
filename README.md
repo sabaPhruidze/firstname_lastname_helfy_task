@@ -9,7 +9,9 @@
    http://localhost:4000/check (it must write server runs)
 5. wrote _req because when it is not used it is common to write "_" symbol
 6. added cors and expres.json middleware
-7.
+7. added GET method on /api/tasks route .
+8. created an array tasks instead of database and added one case to test . it displays succesfully here: http://localhost:4000/api/tasks
+9.
 
 ## Frontend Setup
 
