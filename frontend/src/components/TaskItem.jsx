@@ -17,7 +17,7 @@ const TaskItem = ({ task, onToggle, onDelete, onEdit }) => {
         <button type="button" onClick={() => onToggle(task.id)}>
           Toggle
         </button>{" "}
-        <button type="button" onClick={onEdit(task)}>
+        <button type="button" onClick={() => onEdit(task)}>
           Edit
         </button>
         <button type="button" onClick={handleDelete}>
