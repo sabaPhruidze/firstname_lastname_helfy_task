@@ -49,7 +49,7 @@ function App() {
       <TaskFilter value={filter} onChange={setFilter} />
       <TaskForm onSubmit={createTasks} loading={saving} />
       <p>filter: {filter}</p>
-      {tasks.length === 0 ? (
+      {filteredTasks.length === 0 ? (
         <p>No tasks added yet</p>
       ) : (
         <ul>

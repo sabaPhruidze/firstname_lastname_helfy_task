@@ -53,5 +53,7 @@
 3. retieved data and display . also tried toggle using patch and it displays done correctly as for other cases displays 'pending..' as I wrote
 4. added taskFilter which changes button name all, completed or pending but it does not show real result
 5. Filter now functions by adding filteredTasks instead of using method map on tasks I am using now on filteredTasks function in order to correctly display information
+6. Taskform inputs added ,are controlled and now adds tasks , currently we do not need to check backend on post and get anymore
+7.
 
 ## API Endpoints
