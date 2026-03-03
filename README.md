@@ -22,6 +22,15 @@
     additionaly "title": "" caused error 400 for basic validation
 11. check of post and get method was done using thundertask
 12. moved endpoints in routes folder
+13. PUT method added as well (in tasks.js added @ts-check also) on dynamic route . checked by thunder client first used post to upload data than check by writing :
+    {
+    "title": "updated",
+    "description": "this is a check for updating method",
+    "priority": "high",
+    "completed": true
+    }
+    on put method.
+14. e
 
 ## Frontend Setup
 
