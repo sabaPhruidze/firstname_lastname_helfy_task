@@ -1,11 +1,12 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import { getTasks } from "./services/api";
+import TaskFilter from "./components/TaskFilter";
 function App() {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
-
+  const [filter, setFilter] = useState("all");
   useEffect(() => {
     const fetchTasks = async () => {
       try {
@@ -26,6 +27,8 @@ function App() {
   return (
     <div>
       <h1>Task manager</h1>
+      <TaskFilter value={filter} onChange={setFilter} />
+      <p>filter: {filter}</p>
       {tasks.length === 0 ? (
         <p>No tasks added yet</p>
       ) : (

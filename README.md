@@ -51,5 +51,6 @@
    method DELETE deletes task
    method PATCH toggles completed property/key
 3. retieved data and display . also tried toggle using patch and it displays done correctly as for other cases displays 'pending..' as I wrote
+4. added taskFilter which changes button name all completed or pending
 
 ## API Endpoints
