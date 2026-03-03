@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import "../styles/taskForm.css";
 const possiblePriorities = ["low", "medium", "high"];
 const TaskForm = ({ onSubmit, loading }) => {
   const [title, setTitle] = useState("");
@@ -10,14 +10,14 @@ const TaskForm = ({ onSubmit, loading }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const removeSpacesInTitle = title.trim();
-    const RemoveSpacesInDescription = description.trim();
+    const removeSpacesInDescription = description.trim();
     if (!removeSpacesInTitle) return setError("title must be written");
-    if (!RemoveSpacesInDescription)
+    if (!removeSpacesInDescription)
       return setError("description must be written");
     setError("");
     onSubmit({
       title: removeSpacesInTitle,
-      description: RemoveSpacesInDescription,
+      description: removeSpacesInDescription,
       priority,
     });
     setTitle("");
@@ -25,7 +25,7 @@ const TaskForm = ({ onSubmit, loading }) => {
     setPriority("low");
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="task-form">
       <h3>Add Task</h3>
       {error ? <p>{error}</p> : ""}
       <input
