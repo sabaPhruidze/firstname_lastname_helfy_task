@@ -5,7 +5,7 @@
 
 .track {
   display: flex;
-  will-change: transform;
+  gap: 12px;
 }
 .task-item {
   min-width: 280px;

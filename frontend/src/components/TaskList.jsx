@@ -9,28 +9,26 @@ const TaskList = ({ tasks, onToggle, onDelete, onEdit }) => {
     <div className="carousel">
       <div className="track">
         <div className="set">
-          <div>
-            {tasks.map((task) => (
-              <TaskItem
-                key={`abg-${task.id}`}
-                task={task}
-                onEdit={onEdit}
-                onToggle={onToggle}
-                onDelete={onDelete}
-              />
-            ))}
-          </div>{" "}
-          <div>
-            {tasks.map((task) => (
-              <TaskItem
-                key={`bas-${task.id}`}
-                task={task}
-                onEdit={onEdit}
-                onToggle={onToggle}
-                onDelete={onDelete}
-              />
-            ))}
-          </div>
+          {tasks.map((task) => (
+            <TaskItem
+              key={`abg-${task.id}`}
+              task={task}
+              onEdit={onEdit}
+              onToggle={onToggle}
+              onDelete={onDelete}
+            />
+          ))}
+        </div>
+        <div className="set">
+          {tasks.map((task) => (
+            <TaskItem
+              key={`bas-${task.id}`}
+              task={task}
+              onEdit={onEdit}
+              onToggle={onToggle}
+              onDelete={onDelete}
+            />
+          ))}
         </div>
       </div>
     </div>
