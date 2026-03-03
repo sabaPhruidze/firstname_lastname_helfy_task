@@ -61,6 +61,8 @@
    which fill the inputs with the correct values
    after submitiing on edit mode put request will be sent to relevant route and will update the task instate . cancel buttyon just just clears the inputs and get it backs to add part
    fixed also bugs
-10.
+10. Now goal is to integrate taskList
+    a. replaced the filteredTasks with taskList in app.jsx
+    b. added small style in taskList
 
 ## API Endpoints

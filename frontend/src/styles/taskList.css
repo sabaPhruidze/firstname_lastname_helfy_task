@@ -1,0 +1,18 @@
+.carousel {
+  width: 100%;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  will-change: transform;
+}
+.task-item {
+  min-width: 280px;
+}
+
+.set {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}

@@ -10,6 +10,7 @@ import {
 import TaskFilter from "./components/TaskFilter";
 import TaskForm from "./components/TaskForm";
 import TaskItem from "./components/TaskItem";
+import TaskList from "./components/TaskList";
 function App() {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -109,17 +110,12 @@ function App() {
       {filteredTasks.length === 0 ? (
         <p>No tasks added yet</p>
       ) : (
-        <ul>
-          {filteredTasks.map((task) => (
-            <TaskItem
-              key={task.id}
-              task={task}
-              onToggle={toggleTasks}
-              onDelete={handleDelete}
-              onEdit={startEdit}
-            />
-          ))}
-        </ul>
+        <TaskList
+          tasks={filteredTasks}
+          onToggle={toggleTasks}
+          onDelete={handleDelete}
+          onEdit={startEdit}
+        />
       )}
     </div>
   );
