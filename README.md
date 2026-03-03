@@ -44,5 +44,12 @@
 ## Frontend Setup
 
 1. installed react.js using vite@latest
+2. api
+   method GET returns data from an array wrote in the backend
+   method POST creating tasks
+   method PUT update tasks
+   method DELETE deletes task
+   method PATCH toggles completed property/key
+3.
 
 ## API Endpoints
