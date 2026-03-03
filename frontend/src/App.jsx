@@ -22,6 +22,11 @@ function App() {
     };
     fetchTasks();
   }, []);
+  const filteredTasks = tasks.filter((task) => {
+    if (Object.is(filter, "completed")) return task.completed;
+    if (Object.is(filter, "pending")) return !task.completed;
+    return true; // for returning all
+  });
   if (loading) return <div>tasks will be presented soon...</div>;
   if (error) return <div>{error}</div>;
   return (
@@ -33,7 +38,7 @@ function App() {
         <p>No tasks added yet</p>
       ) : (
         <ul>
-          {tasks.map((task) => (
+          {filteredTasks.map((task) => (
             <li key={task.id}>
               {task.title} , {task.priority} ,{" "}
               {task.completed ? "Done" : "Pending..."}

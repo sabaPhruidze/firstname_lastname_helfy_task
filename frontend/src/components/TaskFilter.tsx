@@ -1,5 +1,3 @@
-import React from "react";
-
 const FILTERS = [
   { key: "all", name: "All" },
   { key: "completed", name: "Completed" },
