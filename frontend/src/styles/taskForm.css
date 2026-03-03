@@ -10,3 +10,12 @@
   padding: 10px;
   font-size: 14px;
 }
+.form-error {
+  margin: 8px 0 10px;
+  padding: 8px 10px;
+  border: 1px solid #ffb3b3;
+  background-color: #fff0f0;
+  border-radius: 8px;
+  color: #b00020;
+  font-size: 14px;
+}

@@ -36,7 +36,7 @@ const TaskForm = ({ onSubmit, loading, mode = "create", values, cancel }) => {
   return (
     <form onSubmit={handleSubmit} className="task-form">
       <h2>{mode === "edit" ? "Edit Task" : "Add Task"}</h2>
-      {error ? <p>{error}</p> : ""}
+      {error ? <p className="form-error">{error}</p> : null}
       <input
         type="text"
         placeholder="title"
@@ -61,11 +61,11 @@ const TaskForm = ({ onSubmit, loading, mode = "create", values, cancel }) => {
           </option>
         ))}
       </select>
-      <button type="submit" disabled={loading}>
-        {loading ? "Please wait..." : mode === "edit" ? "Save" : "Add Task"}
+      <button className="btn btn-primary" type="submit" disabled={loading}>
+        {mode === "edit" ? "Update Task" : "Add Task"}
       </button>
       {mode === "edit" ? (
-        <button type="button" onClick={cancel} disabled={loading}>
+        <button className="btn" type="button" onClick={cancel}>
           Cancel
         </button>
       ) : (

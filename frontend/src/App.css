@@ -1,0 +1,66 @@
+.app {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 20px 14px;
+}
+
+.app-title {
+  margin: 0 0 14px;
+  font-size: 26px;
+}
+
+.panel {
+  border: 1px solid #d3cfcf;
+  border-radius: 12px;
+  background-color: #faf5f5;
+  padding: 14px;
+}
+
+.muted {
+  color: #464545;
+  margin: 10px 0 12px;
+}
+
+.banner {
+  border: 1px solid #d8d4d4;
+  background-color: #efeaea;
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.banner-error {
+  border-color: #ffb3b3;
+  background-color: #fff0f0;
+}
+.btn-primary {
+  border-color: #b8c8ff;
+  background-color: #eef2ff;
+}
+
+.btn-primary:hover {
+  background-color: #e3e9ff;
+}
+.filter {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.filter-btn {
+  padding: 7px 10px;
+  border-radius: 8px;
+  border: 1px solid #c6bdbd;
+  background-color: #eae3e3;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.filter-btn:hover {
+  background-color: #f3f3f3;
+}
+
+.filter-btn.active {
+  border-color: #b8c8ff;
+  background-color: #eef2ff;
+}

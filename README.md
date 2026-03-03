@@ -64,5 +64,14 @@
 10. Now goal is to integrate taskList
     a. replaced the filteredTasks with taskList in app.jsx
     b. added small style in taskList
+    c. organized visually from left to right
+    d. acreated dublication for carousel in order to make an infinite loop that does not show repeating and after that used translate3d as searched and requestAnimationFrame
+11. Improved styles
 
 ## API Endpoints
+
+- GET /api/tasks
+- POST /api/tasks
+- PUT /api/tasks/:id
+- DELETE /api/tasks/:id
+- PATCH /api/tasks/:id/toggle

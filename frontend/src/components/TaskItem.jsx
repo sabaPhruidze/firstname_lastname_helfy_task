@@ -1,4 +1,4 @@
-import React from "react";
+import "../styles/taskItem.css";
 
 const TaskItem = ({ task, onToggle, onDelete, onEdit }) => {
   const handleDelete = () => {
@@ -6,21 +6,31 @@ const TaskItem = ({ task, onToggle, onDelete, onEdit }) => {
     if (ok) onDelete(task.id);
   };
   return (
-    <li>
-      <div>
-        <strong>{task.title}</strong>({task.priority})
+    <li className="task-item">
+      <div className="task-top">
+        <strong className="task-title">{task.title}</strong>
+
+        <span className={`priority-badge priority-${task.priority}`}>
+          {task.priority}
+        </span>
       </div>
-      <div>
-        <span>{task.completed ? "Done" : "Pending"}</span>
+
+      <div className="task-status">
+        <span className={task.completed ? "status-done" : "status-pending"}>
+          {task.completed ? "Done" : "Pending"}
+        </span>
       </div>
-      <div>
-        <button type="button" onClick={() => onToggle(task.id)}>
+
+      <div className="task-actions">
+        <button className="btn" type="button" onClick={() => onToggle(task.id)}>
           Toggle
-        </button>{" "}
-        <button type="button" onClick={() => onEdit(task)}>
+        </button>
+
+        <button className="btn" type="button" onClick={() => onEdit(task)}>
           Edit
         </button>
-        <button type="button" onClick={handleDelete}>
+
+        <button className="btn btn-danger" type="button" onClick={handleDelete}>
           Delete
         </button>
       </div>

@@ -88,35 +88,41 @@ function App() {
       setUpdating(false);
     }
   };
-  if (loading) return <div>tasks will be presented soon...</div>;
-  if (error) return <div>{error}</div>;
+
   return (
-    <div>
-      <h1>Task manager</h1>
-      <TaskFilter value={filter} onChange={setFilter} />
-      {editTask ? (
-        <TaskForm
-          key={editTask.id}
-          mode="edit"
-          values={editTask}
-          onSubmit={updateTask}
-          cancel={cancelEdit}
-          loading={updating}
-        />
-      ) : (
-        <TaskForm onSubmit={createTasks} loading={saving} key="create" />
-      )}
-      <p>filter: {filter}</p>
-      {filteredTasks.length === 0 ? (
-        <p>No tasks added yet</p>
-      ) : (
-        <TaskList
-          tasks={filteredTasks}
-          onToggle={toggleTasks}
-          onDelete={handleDelete}
-          onEdit={startEdit}
-        />
-      )}
+    <div className="app">
+      <h1 className="app-title">Task manager</h1>
+      {loading ? <div className="banner">Loading tasks...</div> : null}
+      {error ? <div className="banner banner-error">{error}</div> : null}
+      <div className="panel">
+        <TaskFilter value={filter} onChange={setFilter} />
+
+        {editTask ? (
+          <TaskForm
+            key={editTask.id}
+            mode="edit"
+            values={editTask}
+            onSubmit={updateTask}
+            cancel={cancelEdit}
+            loading={updating}
+          />
+        ) : (
+          <TaskForm onSubmit={createTasks} loading={saving} key="create" />
+        )}
+
+        <p className="muted">filter: {filter}</p>
+
+        {filteredTasks.length === 0 ? (
+          <p className="muted">No tasks added yet</p>
+        ) : (
+          <TaskList
+            tasks={filteredTasks}
+            onToggle={toggleTasks}
+            onDelete={handleDelete}
+            onEdit={startEdit}
+          />
+        )}
+      </div>
     </div>
   );
 }

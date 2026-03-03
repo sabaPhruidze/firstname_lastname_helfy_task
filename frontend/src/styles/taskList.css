@@ -1,18 +1,41 @@
 .carousel {
   width: 100%;
   overflow: hidden;
+  padding: 10px 0;
+  position: relative;
 }
 
 .track {
+  position: relative;
   display: flex;
-  gap: 12px;
-}
-.task-item {
-  min-width: 280px;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
 }
 
 .set {
   display: flex;
   gap: 12px;
   flex-shrink: 0;
+}
+
+.set-clone {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@media (max-width: 600px) {
+  .task-item {
+    min-width: 85vw;
+  }
+}
+
+.empty-state {
+  padding: 14px;
+  border: 1px dashed #c9c5c5;
+  border-radius: 10px;
+  background-color: #ebe3e3;
+}
+.task-item {
+  list-style: none;
 }
