@@ -19,8 +19,9 @@
     "priority": "mediumfew"
     }
     wrote priority like this and it added low but when I wrote medium it added correctly
+    additionaly "title": "" caused error 400 for basic validation
 11. check of post and get method was done using thundertask
-12.
+12. moved endpoints in routes folder
 
 ## Frontend Setup
 
