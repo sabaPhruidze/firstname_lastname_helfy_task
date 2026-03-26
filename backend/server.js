@@ -20,6 +20,6 @@ app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(
-    `server runs succesfully on this link: http://localhost:${PORT}/api/tasks`,
+    `Server is running on http://localhost:${PORT}/api/tasks`,
   );
 });

@@ -1,0 +1,57 @@
+:root {
+  --bg-main: #f4f7fb;
+  --bg-panel: rgba(255, 255, 255, 0.92);
+  --bg-soft: #eef3fa;
+  --text-main: #16202d;
+  --text-soft: #556273;
+  --line: #d5deeb;
+  --brand: #1f6feb;
+  --brand-strong: #164fad;
+  --accent: #ff8a47;
+  --danger: #c73a3a;
+  --shadow: 0 16px 40px rgba(16, 39, 72, 0.12);
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #f6efec;
+}
+#root {
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  font-family:
+    "Avenir Next", "Trebuchet MS", "Lucida Sans", "Segoe UI", sans-serif;
+  color: var(--text-main);
+  background:
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(31, 111, 235, 0.22),
+      transparent 36%
+    ),
+    radial-gradient(circle at 8% 18%, rgba(255, 138, 71, 0.2), transparent 30%),
+    linear-gradient(160deg, #f7fbff 0%, #edf2fb 100%);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}

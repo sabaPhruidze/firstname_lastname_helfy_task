@@ -1,45 +1,46 @@
 const express = require("express");
 const router = express.Router();
 const { tasks, possiblePriorities, getNewId } = require("./tasks_store");
-// GET [START]
 
 router.get("/", (_req, res) => {
   res.status(200).json(tasks);
 });
-// GET [END]
-// POST [START]
 
 router.post("/", (req, res) => {
   const { title, description, priority } = req.body;
-  const checkTitle = typeof title === "string" ? title.trim() : "";
-  if (!checkTitle) {
+  const cleanTitle = typeof title === "string" ? title.trim() : "";
+  if (!cleanTitle) {
     return res
       .status(400)
-      .json({ message: "title is emtpy. please write the title" });
+      .json({ message: "Title is empty. Please write a title." });
   }
-  const checkDescriptionm =
+
+  const cleanDescription =
     typeof description === "string" ? description.trim() : "";
-  if (!checkDescriptionm) {
+  if (!cleanDescription) {
     return res
       .status(400)
-      .json({ message: "description is emtpy. please write the description" });
+      .json({ message: "Description is empty. Please write a description." });
   }
+
   if (priority !== undefined && !possiblePriorities.includes(priority)) {
     return res.status(400).json({
-      message: "Incorrect priority. use low,medium or high only",
+      message: "Incorrect priority. Use low, medium or high only.",
     });
   }
+
   const correctPriority = priority ?? "low";
   const newTask = {
     id: getNewId(),
-    title: checkTitle,
-    description: checkDescriptionm,
+    title: cleanTitle,
+    description: cleanDescription,
     completed: false,
     createdAt: new Date().toISOString(),
     priority: correctPriority,
   };
+
   tasks.unshift(newTask);
   return res.status(201).json(newTask);
 });
-// POST [END]
+
 module.exports = router;

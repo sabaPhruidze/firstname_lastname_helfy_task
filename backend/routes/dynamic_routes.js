@@ -2,71 +2,77 @@
 const express = require("express");
 const router = express.Router();
 const { tasks, possiblePriorities } = require("./tasks_store");
-// PUT [START]
+
 router.put("/:id", (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = Number.parseInt(req.params.id, 10);
   if (!Number.isFinite(id)) {
-    return res.status(400).json({ message: "incorrect task id" });
+    return res.status(400).json({ message: "Incorrect task id." });
   }
+
   const task = tasks.find((eachTask) => eachTask.id === id);
   if (!task) {
-    return res.status(404).json({ message: "incorrect id" });
+    return res.status(404).json({ message: "Task id was not found." });
   }
-  // repeated this part from post [START]
-  const { title, description, priority, completed } = req.body;
 
-  const checkTitle = typeof title === "string" ? title.trim() : "";
-  if (!checkTitle) {
+  const { title, description, priority, completed } = req.body;
+  const cleanTitle = typeof title === "string" ? title.trim() : "";
+  if (!cleanTitle) {
     return res
       .status(400)
-      .json({ message: "title is emtpy. please write the title" });
+      .json({ message: "Title is empty. Please write a title." });
   }
-  task.title = checkTitle;
-  const checkDescription =
+  task.title = cleanTitle;
+
+  const cleanDescription =
     typeof description === "string" ? description.trim() : "";
-  if (!checkDescription) {
+  if (!cleanDescription) {
     return res
       .status(400)
-      .json({ message: "description is emtpy. please write the description" });
+      .json({ message: "Description is empty. Please write a description." });
   }
-  task.description = checkDescription;
+  task.description = cleanDescription;
+
   if (!possiblePriorities.includes(priority)) {
-    return res.status(400).json({ message: "written incorrect priority" });
+    return res.status(400).json({ message: "Incorrect priority value." });
   }
+
   task.priority = priority;
-  // repeated this part from post [END]
+
   if (typeof completed === "boolean") {
     task.completed = completed;
   }
+
   return res.status(200).json(task);
 });
-// PUT [END]
-// DELETE [START]
+
 router.delete("/:id", (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = Number.parseInt(req.params.id, 10);
   if (!Number.isFinite(id)) {
-    return res.status(400).json({ message: "incorrect task id" });
+    return res.status(400).json({ message: "Incorrect task id." });
   }
-  const index = tasks.findIndex((each) => each.id === id); //if no = than -1;
+
+  const index = tasks.findIndex((each) => each.id === id);
   if (index === -1) {
-    return res.status(404).json({ message: "No task with this id" });
+    return res.status(404).json({ message: "No task with this id." });
   }
+
   tasks.splice(index, 1);
-  return res.status(200).json({ message: "succesfully removed task" });
+  return res.status(200).json({ message: "Task was removed successfully." });
 });
-// DELETE [END]
-// PATCH [START]
+
 router.patch("/:id/toggle", (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = Number.parseInt(req.params.id, 10);
   if (!Number.isFinite(id)) {
-    return res.status(400).json({ message: "incorrect task id" });
+    return res.status(400).json({ message: "Incorrect task id." });
   }
+
   const task = tasks.find((eachTask) => eachTask.id === id);
   if (!task) {
-    return res.status(404).json({ message: "incorrect id" });
+    return res.status(404).json({ message: "Task id was not found." });
   }
+
   task.completed = !task.completed;
   return res.status(200).json(task);
 });
-// PATCH [END]
+
 module.exports = router;

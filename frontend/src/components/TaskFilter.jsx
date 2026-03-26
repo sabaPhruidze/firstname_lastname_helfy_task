@@ -4,18 +4,19 @@ const FILTERS = [
   { key: "pending", name: "Pending" },
 ];
 
-const TaskFilter = ({ value, onChange }) => {
+const TaskFilter = ({ value, onChange, counts = {} }) => {
   return (
-    <div>
+    <div className="filter" role="group" aria-label="Task filters">
       {FILTERS.map((each) => (
         <button
           type="button"
           onClick={() => onChange(each.key)}
           disabled={value === each.key}
-          className={`filter-btn ${value === "all" ? "active" : value === "completed" ? "active" : value === "pending" ? "active" : ""}`}
+          className={`filter-btn ${value === each.key ? "active" : ""}`}
           key={each.key}
         >
-          {each.name}
+          {each.name}{" "}
+          <span className="filter-count">{counts[each.key] ?? 0}</span>
         </button>
       ))}
     </div>
